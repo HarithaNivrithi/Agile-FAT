@@ -1,0 +1,312 @@
+Got it — this is basically a mini end-to-end DevOps + Web project. I’ll give you everything in a clean, exam + practical friendly way:
+
+
+---
+
+1. HTML Webpage Code (University Department)
+
+Create a file: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Department - Computer Science</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>XYZ University</h1>
+    <p>Department of Computer Science</p>
+    <p>Head of Department: Dr. Rajesh Kumar</p>
+</header>
+
+<section>
+    <h2>About Department</h2>
+    <p>
+        The Computer Science department focuses on cutting-edge technologies,
+        software development, AI, and data science.
+    </p>
+</section>
+
+<section>
+    <h2>Courses Offered</h2>
+    <ul>
+        <li><b>Data Structures</b> - Learn about stacks, queues, trees.</li>
+        <li><b>Operating Systems</b> - Concepts of processes, memory.</li>
+        <li><b>Web Development</b> - HTML, CSS, JavaScript basics.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Faculty</h2>
+    <ul>
+        <li>Dr. Rajesh Kumar - Professor (AI)</li>
+        <li>Ms. Priya Sharma - Assistant Professor (Web Dev)</li>
+        <li>Mr. Arun - Lecturer (Data Science)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Contact</h2>
+    <p>Address: XYZ University, Chennai</p>
+    <p>Phone: +91 9876543210</p>
+    <p>Email: csdept@xyzuniversity.edu</p>
+</section>
+
+<footer>
+    <p>© 2026 XYZ University</p>
+</footer>
+
+</body>
+</html>
+
+
+---
+
+2. GitHub Implementation Steps
+
+Step 1: Create Repo
+
+Go to GitHub → New Repository
+
+Name: university-department-webpage
+
+
+
+---
+
+Step 2: Clone in VS Code
+
+git clone https://github.com/your-username/university-department-webpage.git
+cd university-department-webpage
+
+
+---
+
+Step 3: Add Files
+
+Add index.html
+
+
+
+---
+
+Step 4: Commit & Push
+
+git add .
+git commit -m "Initial webpage"
+git push origin main
+
+
+---
+
+3. Docker Containerization
+
+Step 1: Create Dockerfile
+
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+
+
+---
+
+Step 2: Build Image
+
+docker build -t university-web .
+
+
+---
+
+Step 3: Run Container
+
+docker run -d -p 8080:80 university-web
+
+Open browser:
+👉 http://localhost:8080
+
+
+---
+
+4. Jenkins Pipeline (CI/CD)
+
+Step 1: Create Jenkins Pipeline Project
+
+Open Jenkins
+
+Click New Item
+
+Select Pipeline
+
+Name: University-Web-Pipeline
+
+
+
+---
+
+Step 2: Pipeline Script
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/your-username/university-department-webpage.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t university-web .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh 'docker run -d -p 8080:80 university-web'
+            }
+        }
+
+    }
+}
+
+
+---
+
+5. Kubernetes Deployment
+
+Step 1: Create deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: university-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: university
+  template:
+    metadata:
+      labels:
+        app: university
+    spec:
+      containers:
+      - name: university-container
+        image: university-web
+        ports:
+        - containerPort: 80
+
+
+---
+
+Step 2: Service File service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: university-service
+spec:
+  type: NodePort
+  selector:
+    app: university
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
+
+
+---
+
+Step 3: Apply in Kubernetes
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get pods
+kubectl get services
+
+
+---
+
+6. Docker Desktop Visualization
+
+Open Docker Desktop
+
+Go to Containers / Apps
+
+You’ll see:
+
+Running container
+
+Kubernetes pods
+
+
+
+
+---
+
+7. Final Flow (Important for Viva)
+
+HTML → GitHub → Docker → Jenkins → Kubernetes → Docker Desktop
+
+
+---
+
+8. Common Errors (VERY IMPORTANT)
+
+ErrImagePull
+
+Image not pushed → use:
+
+
+docker tag university-web yourdockerhub/university-web
+docker push yourdockerhub/university-web
+
+Port Already Used
+
+docker ps
+docker stop <container-id>
+
+
+---
+
+If you want next:
+
+I can also give:
+
+Proper **Viva answers**
+
+**Architecture diagram**
+
+**Marks-oriented explanation**
+
+Fix your **ErrImagePull issue from your previous error**
+
+
+Just tell me 👍
