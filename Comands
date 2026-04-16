@@ -1,0 +1,12 @@
+git config --global user.name "[]"
+git config --global user.email "[harithanivrithi13@gmail.com]"
+git init
+git clone [url]
+git status
+git add [file] or git add .
+git diff
+git commit -m ""
+git branch 
+git checkout
+git merge [branch]
+git log
